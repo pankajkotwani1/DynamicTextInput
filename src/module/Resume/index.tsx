@@ -29,8 +29,12 @@ const Resume = () => {
   );
 
   //Cerification
-  const [c_s_years_picker, setC_S_Years_Enabled] = useState<boolean[]>([]);
-  const [c_e_years_picker, setC_E_Years_Enabled] = useState<boolean[]>([]);
+  const [
+    certification_start_years_picker,
+    setCertification_Start_Year_Enabled,
+  ] = useState<boolean[]>([]);
+  const [certification_end_years_picker, setCertification_End_Year_Enabled] =
+    useState<boolean[]>([]);
   const [modalVisible, setModalVisible] = useState<boolean[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -82,19 +86,19 @@ const Resume = () => {
   };
 
   /**
-   * onC_SChange helps enabling date picker modal for start year
+   * onCertification_Start date helps enabling date picker modal for start year
    */
-  const onC_SChange = (indexToChange: number, isOpen: boolean) => {
-    c_s_years_picker[indexToChange] = isOpen;
-    setC_S_Years_Enabled([...c_s_years_picker]);
+  const onCertification_Start = (indexToChange: number, isOpen: boolean) => {
+    certification_start_years_picker[indexToChange] = isOpen;
+    setCertification_Start_Year_Enabled([...certification_start_years_picker]);
   };
 
   /**
-   * onC_EChange helps enabling date picker modal for end year
+   * onCertification_End helps enabling date picker modal for end year
    */
-  const onC_EChange = (indexToChange: number, isOpen: boolean) => {
-    c_e_years_picker[indexToChange] = isOpen;
-    setC_E_Years_Enabled([...c_e_years_picker]);
+  const onCertification_End = (indexToChange: number, isOpen: boolean) => {
+    certification_end_years_picker[indexToChange] = isOpen;
+    setCertification_End_Year_Enabled([...certification_end_years_picker]);
   };
 
   /**
@@ -254,7 +258,8 @@ const Resume = () => {
                         <TextInputLabel>Years</TextInputLabel>
                         <TextInputView>
                           <YearsView>
-                            <YearTextInput onPress={() => onC_SChange(i, true)}>
+                            <YearTextInput
+                              onPress={() => onCertification_Start(i, true)}>
                               {values?.c_years?.[i] !== undefined ? (
                                 getDateValue(values?.c_years?.[i]?.c_s_years)
                               ) : (
@@ -263,7 +268,8 @@ const Resume = () => {
                               <Separator />
                             </YearTextInput>
 
-                            <YearTextInput onPress={() => onC_EChange(i, true)}>
+                            <YearTextInput
+                              onPress={() => onCertification_End(i, true)}>
                               {values?.c_years?.[i] !== undefined ? (
                                 getDateValue(values?.c_years?.[i]?.c_e_years)
                               ) : (
@@ -284,35 +290,35 @@ const Resume = () => {
                             )}
                           />
                           <DateTimePickerModal
-                            isVisible={c_s_years_picker[i]}
+                            isVisible={certification_start_years_picker[i]}
                             date={new Date()}
                             mode={'date'}
                             display="spinner"
                             onConfirm={date => {
-                              onC_SChange(i, false);
+                              onCertification_Start(i, false);
                               setFieldValue(
                                 `c_years[${i}].c_s_years`,
                                 date,
                                 true,
                               );
                             }}
-                            onCancel={() => onC_SChange(i, false)}
+                            onCancel={() => onCertification_Start(i, false)}
                             maximumDate={new Date()}
                           />
                           <DateTimePickerModal
-                            isVisible={c_e_years_picker[i]}
+                            isVisible={certification_end_years_picker[i]}
                             date={new Date()}
                             mode={'date'}
                             display="spinner"
                             onConfirm={date => {
-                              onC_EChange(i, false);
+                              onCertification_End(i, false);
                               setFieldValue(
                                 `c_years[${i}].c_e_years`,
                                 date,
                                 true,
                               );
                             }}
-                            onCancel={() => onC_EChange(i, false)}
+                            onCancel={() => onCertification_End(i, false)}
                             maximumDate={new Date()}
                           />
                         </TextInputView>
