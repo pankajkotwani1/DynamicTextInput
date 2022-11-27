@@ -6,3 +6,6 @@ https://user-images.githubusercontent.com/53460795/203913687-af77fab3-24ad-471d-
 Dynamic form is used for creating form fields dynamic with validations.
 
 
+# Example
+A full working example project is here [a link](https://github.com/pankajkotwani1/DynamicTextInput/blob/main/src/module/Home/resume.tsx)
+
